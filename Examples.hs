@@ -2,7 +2,7 @@ import Validation
 import Control.Applicative
 import Control.Monad
 
-validate desc pred input = if (pred input) then valid input else invalid input desc
+validate desc pred input = if (pred input) then valid input else invalid input [desc]
 
 minLength desc min = validate desc (\input -> length input >= min)
 maxLength desc max = validate desc (\input -> length input <= max)
