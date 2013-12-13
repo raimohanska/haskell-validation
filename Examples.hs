@@ -1,15 +1,15 @@
 import Validation
 import Control.Applicative
+import Control.Monad
 
-validatePassword :: String -> Validation [String] String
-validatePassword pw = if length pw > 6 
-                        then valid pw 
-                        else invalid pw ["password too short"]
+validate desc pred input = if (pred input) then valid input else invalid input desc
 
-validateUsername :: String -> Validation [String] String
-validateUsername un = if length un > 6 
-                        then valid un 
-                        else invalid un ["username too short"]
+minLength desc min = validate desc (\input -> length input >= min)
+maxLength desc max = validate desc (\input -> length input <= max)
+
+validatePassword = minLength "password too short" 6
+validateUsername = minLength "username too short" 6 >=> 
+                   maxLength "username too long" 12
 
 -- validate using Applicative
 validateAccount user pass = (,) <$> validateUsername user<*> validatePassword pass 

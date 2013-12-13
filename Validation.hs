@@ -9,7 +9,7 @@ data Validation e a where
   Validation :: (Monoid e, Eq e) => a -> e -> Validation e a
 
 valid x = Validation x mempty
-invalid x errors = Validation x errors
+invalid x error = Validation x [error]
 
 instance (Show a, Show e) => Show (Validation e a) where
   show (Validation a e) | e == mempty = "OK:" ++ show a
