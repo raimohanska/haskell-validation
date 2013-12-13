@@ -12,7 +12,7 @@ validateUsername = minLength "username too short" 6 >=>
                    maxLength "username too long" 12
 
 -- validate using Applicative
-validateAccount user pass = (,) <$> validateUsername user<*> validatePassword pass 
+validateAccount user pass = (,) <$> validateUsername user <*> validatePassword pass 
 
 -- validate using Monad
 validateMonadic :: String -> String -> Validation [String] (String, String)
