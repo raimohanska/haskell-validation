@@ -1,6 +1,6 @@
 {-# LANGUAGE GADTs #-}
 
-module Validation where
+module Validation(Validation, valid, invalid) where
 
 import Control.Applicative
 import Data.Monoid
