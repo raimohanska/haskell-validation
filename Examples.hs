@@ -14,6 +14,6 @@ validateAccount user pass = (,) <$> validateUsername user<*> validatePassword pa
 
 -- validate using Monad
 validateMonadic user pass = do
-  u <- validateUsername user
-  p <- validatePassword pass
-  return (u, p)
+  validateUsername user
+  validatePassword pass
+  return (user, pass)
